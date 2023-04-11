@@ -25,6 +25,8 @@ const callChatGPT = async (prompt) => {
       data: {
         prompt,
         max_tokens: 50,
+        
+  model: "text-davinci-003",
         n: 1,
         stop: null,
         temperature: 1,
