@@ -2,9 +2,9 @@ import { Meteor } from 'meteor/meteor';
 import { WebApp } from 'meteor/webapp';
 import { HTTP } from 'meteor/http';
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const OPENAI_API_KEY = process.env.METEOR_SETTINGS.OPENAI_API_KEY;
 
-console.log('OPENAI_API_KEY:', process.env);
+console.log('OPENAI_API_KEY:', process.env.METEOR_SETTINGS.OPENAI_API_KEY);
 
 
 const callChatGPT = async (prompt) => {
