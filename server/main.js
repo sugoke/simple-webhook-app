@@ -3,6 +3,7 @@ import { WebApp } from 'meteor/webapp';
 import { HTTP } from 'meteor/http';
 
 
+
 // Parse the METEOR_SETTINGS JSON string
 const meteorSettings = JSON.parse(process.env.METEOR_SETTINGS);
 
