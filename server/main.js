@@ -4,6 +4,9 @@ import { HTTP } from 'meteor/http';
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
+console.log('OPENAI_API_KEY:', OPENAI_API_KEY);
+
+
 const callChatGPT = async (prompt) => {
   const apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
 
