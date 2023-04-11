@@ -14,7 +14,7 @@ console.log('OPENAI_API_KEY:', OPENAI_API_KEY);
 
 
 const callChatGPT = async (prompt) => {
-  const apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+  const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   try {
     const response = await HTTP.call('POST', apiUrl, {
