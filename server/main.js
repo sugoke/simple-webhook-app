@@ -37,6 +37,9 @@ const callChatGPT = async (prompt) => {
 };
 
 Meteor.startup(() => {
+
+console.log('OPENAI_API_KEY:', OPENAI_API_KEY);
+
   WebApp.connectHandlers.use('/post-endpoint', async (req, res, next) => {
     if (req.method === 'POST') {
       let body = '';
