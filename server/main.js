@@ -23,13 +23,14 @@ const callChatGPT = async (prompt) => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${OPENAI_API_KEY}`,
       },
-        body: JSON.stringify({
-            prompt: prompt,
-            max_tokens: 150,
-            n: 1,
-            stop: null,
-            temperature: 0.8,
-          }),
+       data: {
+  prompt: prompt,
+  max_tokens: 150,
+  n: 1,
+  stop: null,
+  temperature: 0.8,
+},
+
     });
 
     if (response && response.data && response.data.choices && response.data.choices.length > 0) {
