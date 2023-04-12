@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { WebApp } from 'meteor/webapp';
 import { HTTP } from 'meteor/http';
+import querystring from 'querystring';
 
 
 
@@ -56,11 +57,15 @@ console.log('OPENAI_API_KEY:', OPENAI_API_KEY);
       });
 
       req.on('end', async () => {
-        console.log('Received POST data:', body);
+        const parsedBody = querystring.parse(body);
+const messageBody = parsedBody.Body || '';
+console.log('Received message body:', messageBody);
+
 
         // Call the ChatGPT API with the received data as the prompt
         try {
-          const chatGptResponse = await callChatGPT(body);
+          const chatGptResponse = await callChatGPT(messageBody);
+
           res.writeHead(200, { 'Content-Type': 'text/plain' });
           res.end(chatGptResponse);
         } catch (error) {
