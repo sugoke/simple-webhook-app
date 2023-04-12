@@ -24,7 +24,7 @@ const callChatGPT = async (prompt) => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${OPENAI_API_KEY}`,
       },
-        body: JSON.stringify({
+        data: JSON.stringify({
             prompt: prompt,
             max_tokens: 150,
             n: 1,
