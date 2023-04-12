@@ -5,6 +5,7 @@ import querystring from 'querystring';
 
 
 
+
 // Parse the METEOR_SETTINGS JSON string
 const meteorSettings = JSON.parse(process.env.METEOR_SETTINGS);
 
