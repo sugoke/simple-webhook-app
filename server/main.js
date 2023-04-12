@@ -2,10 +2,20 @@ import { Meteor } from 'meteor/meteor';
 import { WebApp } from 'meteor/webapp';
 import { HTTP } from 'meteor/http';
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+
+
+// Parse the METEOR_SETTINGS JSON string
+const meteorSettings = JSON.parse(process.env.METEOR_SETTINGS);
+
+// Access the OPENAI_API_KEY from the parsed object
+const OPENAI_API_KEY = meteorSettings.OPENAI_API_KEY;
+
+
+console.log('OPENAI_API_KEY:', OPENAI_API_KEY);
+
 
 const callChatGPT = async (prompt) => {
-  const apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+  const apiUrl = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
 
   try {
     const response = await HTTP.call('POST', apiUrl, {
@@ -13,13 +23,13 @@ const callChatGPT = async (prompt) => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${OPENAI_API_KEY}`,
       },
-      data: {
-        prompt,
-        max_tokens: 50,
-        n: 1,
-        stop: null,
-        temperature: 1,
-      },
+        body: JSON.stringify({
+            prompt: prompt,
+            max_tokens: 150,
+            n: 1,
+            stop: null,
+            temperature: 0.8,
+          }),
     });
 
     if (response && response.data && response.data.choices && response.data.choices.length > 0) {
@@ -34,6 +44,9 @@ const callChatGPT = async (prompt) => {
 };
 
 Meteor.startup(() => {
+
+console.log('OPENAI_API_KEY:', OPENAI_API_KEY);
+
   WebApp.connectHandlers.use('/post-endpoint', async (req, res, next) => {
     if (req.method === 'POST') {
       let body = '';
