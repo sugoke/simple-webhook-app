@@ -17,15 +17,12 @@ console.log('OPENAI_API_KEY:', OPENAI_API_KEY);
 const callChatGPT = async (prompt) => {
   const apiUrl = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
 
-  console.log('Sending prompt to ChatGPT API:', prompt);
-
   try {
     const response = await HTTP.call('POST', apiUrl, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${OPENAI_API_KEY}`,
       },
-<<<<<<< HEAD
         body: JSON.stringify({
             prompt: prompt,
             max_tokens: 150,
@@ -33,16 +30,6 @@ const callChatGPT = async (prompt) => {
             stop: null,
             temperature: 0.8,
           }),
-=======
-       data: {
-  prompt: prompt,
-  max_tokens: 150,
-  n: 1,
-  stop: null,
-  temperature: 0.8,
-},
-
->>>>>>> d32273d0ecb8a98e22625026273aa085066e1c81
     });
 
     if (response && response.data && response.data.choices && response.data.choices.length > 0) {
